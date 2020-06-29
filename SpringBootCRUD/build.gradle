@@ -1,0 +1,52 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.0.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+}
+apply plugin:'war'
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-tomcat
+compile group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: '2.3.1.RELEASE'
+
+// https://mvnrepository.com/artifact/javax.servlet/jstl
+compile group: 'javax.servlet', name: 'jstl', version: '1.2'
+// https://mvnrepository.com/artifact/taglibs/standard
+compile group: 'taglibs', name: 'standard', version: '1.1.2'
+// https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-jasper
+compile group: 'org.apache.tomcat', name: 'tomcat-jasper', version: '9.0.35'
+// https://mvnrepository.com/artifact/com.google.zxing/core
+compile group: 'com.google.zxing', name: 'core', version: '3.4.0'
+// https://mvnrepository.com/artifact/com.google.zxing/javase
+compile group: 'com.google.zxing', name: 'javase', version: '3.4.0'
+// https://mvnrepository.com/artifact/org.springframework.security/spring-security-test
+compile group: 'org.springframework.security', name: 'spring-security-test', version: '5.3.3.RELEASE'
+
+
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
